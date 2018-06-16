@@ -1,13 +1,13 @@
 var Discord = require('discord.js');
 
-exports.process = function(i) {
+exports.process = function(info) {
   var embed = new Discord.RichEmbed()
-    .setTitle(i.message.author.tag + '\'s avatar')
-    .setDescription('[Link](' + i.message.author.avatarURL + ')')
-    .setImage(i.message.author.avatarURL)
+    .setTitle(info.message.author.tag + '\'s avatar')
+    .setDescription('[Link](' + info.message.author.avatarURL + ')')
+    .setImage(info.message.author.avatarURL)
     .setTimestamp(new Date());
 
-  i.message.channel.send({embed});
+  info.message.channel.send({embed});
 }
 
 exports.usage = 'avatar | get your avatar';

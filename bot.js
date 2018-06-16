@@ -1,15 +1,11 @@
 var Discord = require('discord.js');
 var fs = require('fs');
 var config = require('./config.json');
+var package = require('./package.json');
 
 var client = new Discord.Client();
 var commands = [];
 var commandPaths = [];
-
-var info = {
-  client : client,
-  config : config
-}
 
 client.on('ready', () => {
   getCommands();
@@ -33,6 +29,7 @@ client.on('message', message => {
       cmdFile.process({
         client : client,
         config : config,
+        package : package,
         message : message,
         args : args
       })

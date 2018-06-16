@@ -20,7 +20,7 @@ exports.process = function(info) {
   for (var i = 0; i < dirs.length; i++) {
     var text = '';
 
-    for (var x = 0; x < dirs[x].cmds.length; x++) {
+    for (var x = 0; x < dirs[i].cmds.length; x++) {
       text += info.config.prefix + require('../' + dirs[i].dir + '/' + dirs[i].cmds[x]).usage + '\n';
     }
 

@@ -14,7 +14,7 @@ exports.process = function(info) {
   })
 
   var embed = new Discord.RichEmbed()
-    .setTitle('EarthBot Commands')
+    .setTitle('ClinkBot Commands')
     .setDescription('A list of all the commands');
 
   for (var i = 0; i < dirs.length; i++) {

@@ -2,6 +2,7 @@ var Discord = require('discord.js');
 var fs = require('fs');
 var config = require('./config.json');
 var package = require('./package.json');
+var permissions = require('./permissions.js');
 
 var client = new Discord.Client();
 var commands = [];
@@ -25,14 +26,20 @@ client.on('message', message => {
 
   for (var i = 0; i < commands.length; i++) {
     if (commands[i] == command) {
-      var cmdFile = require(commandPaths[i]);
-      cmdFile.process({
-        client : client,
-        config : config,
-        package : package,
-        message : message,
-        args : args
-      })
+      var perm = permissions.isAllowed(command, message);
+      if (perm.state == true) {
+        var cmdFile = require(commandPaths[i]);
+        cmdFile.process({
+          client : client,
+          config : config,
+          package : package,
+          message : message,
+          args : args
+        })
+      }
+      else {
+        message.reply(perm.message);
+      }
     }
   }
 })

@@ -9,7 +9,7 @@ function logWarning(message) {
 function logError(error) {
   var str = '[ERROR] ';
 
-  var regex = /earth-bot\\(.*)\.js:[0-9]*:[0-9]*/;
+  var regex = /clink-bot\\(.*)\.js:[0-9]*:[0-9]*/;
   var a = error.stack.match(regex);
 
   if (a) {

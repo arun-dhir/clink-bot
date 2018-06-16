@@ -1,4 +1,4 @@
-# earth-bot
+# clink-bot
 
 A WIP discord bot, built in discord.js.
 

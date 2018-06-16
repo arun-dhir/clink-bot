@@ -3,18 +3,24 @@ var fs = require('fs');
 var config = require('./config.json');
 var package = require('./package.json');
 var permissions = require('./permissions.js');
+var logger = require('./logger.js');
 
 var client = new Discord.Client();
 var commands = [];
 var commandPaths = [];
 
+process.on('uncaughtException', function (err) {
+  logger.logError(err);
+  logger.logWarning('Application in unclean state. Stopping process.')
+  process.exit(1)
+})
+
 client.on('ready', () => {
   getCommands();
 
-  console.log("Bot is ready");
-
-  client.user.setStatus('online');
   client.user.setPresence({ game: { name : config.prefix + 'help', type : 0 } });
+
+  logger.logMessage('Bot is ready')
 })
 
 client.on('message', message => {
@@ -28,11 +34,13 @@ client.on('message', message => {
     if (commands[i] == command) {
       var perm = permissions.isAllowed(command, message);
       if (perm.state == true) {
+        logger.logMessage(`${message.author.tag} used command ${command}`);
         var cmdFile = require(commandPaths[i]);
         cmdFile.process({
           client : client,
           config : config,
           package : package,
+          logger : logger,
           message : message,
           args : args
         })
@@ -49,6 +57,7 @@ client.login(config.token);
 function getCommands() {
   fs.readdirSync('./commands').forEach(dir => {
     fs.readdirSync('./commands/' + dir).forEach(file => {
+      logger.logMessage('Loaded command : ' + file);
       commands.push(file.toLowerCase().substring(0, file.length - 3));
       commandPaths.push('./commands/' + dir + '/' + file);
     })

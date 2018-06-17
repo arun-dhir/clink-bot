@@ -11,8 +11,8 @@ var commandPaths = [];
 
 process.on('uncaughtException', function (err) {
   logger.logError(err);
-  logger.logWarning('Application in unclean state. Stopping process.')
-  process.exit(1)
+  logger.logWarning('Application in unclean state. Stopping process.');
+  process.exit(1);
 })
 
 client.on('ready', () => {
@@ -21,7 +21,7 @@ client.on('ready', () => {
 
   client.user.setPresence({ game: { name : config.prefix + 'help', type : 0 } });
 
-  logger.logMessage('Bot is ready')
+  logger.logMessage('Bot is ready');
 })
 
 client.on('message', message => {
@@ -31,6 +31,21 @@ client.on('message', message => {
   var args = message.content.slice(config.prefix.length).trim().split(/ +/g);
   var command = args.shift().toLowerCase();
 
+  if (config.deleteCommands) {
+    message.delete()
+      .then(() => {
+        processMessage(message, command, args);
+      })
+      .catch(logger.logError)
+  }
+  else {
+    processMessage(message, command, args);
+  }
+})
+
+client.login(config.token);
+
+function processMessage(message, command, args) {
   for (var i = 0; i < commands.length; i++) {
     if (commands[i] == command) {
       var perm = permissions.isAllowed(command, message);
@@ -51,9 +66,7 @@ client.on('message', message => {
       }
     }
   }
-})
-
-client.login(config.token);
+}
 
 function getCommands() {
   fs.readdirSync('./commands').forEach(dir => {

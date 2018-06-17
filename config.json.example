@@ -1,5 +1,6 @@
 {
   "prefix":"",
   "token":"",
+  "deleteCommands":true,
   "welcomeMessage":""
 }

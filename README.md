@@ -6,7 +6,7 @@ A WIP discord bot, built in discord.js. Find what's coming next on our [Trello](
 
 ### Installation
 
-You will need to have [node.js](https://nodejs.org/) on your computer to host it yourself. Go into `config.json` and fill in the token and your prefix. Use `cd` to go to the location of your bot then use `node bot.js` and enjoy!
+You will need to have [node.js](https://nodejs.org/) on your computer to host it yourself. Remove the `.example` on files ending with `.example`, for example `config.json.example` becomes just `config.json`. Go into `config.json` and fill in the token and your prefix. Use `cd` to go to the location of your bot then use `node bot.js` and enjoy!
 
 ---
 

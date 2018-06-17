@@ -16,6 +16,7 @@ process.on('uncaughtException', function (err) {
 })
 
 client.on('ready', () => {
+  loadPlugins();
   getCommands();
 
   client.user.setPresence({ game: { name : config.prefix + 'help', type : 0 } });
@@ -57,9 +58,22 @@ client.login(config.token);
 function getCommands() {
   fs.readdirSync('./commands').forEach(dir => {
     fs.readdirSync('./commands/' + dir).forEach(file => {
-      logger.logMessage('Loaded command : ' + file);
       commands.push(file.toLowerCase().substring(0, file.length - 3));
       commandPaths.push('./commands/' + dir + '/' + file);
+      logger.logMessage('Loaded command : ' + file);
     })
+  })
+}
+
+function loadPlugins() {
+  fs.readdirSync('./plugins').forEach(dir => {
+    var plugin = require('./plugins/' + dir + '/' + dir + '.js');
+    plugin.init({
+      client : client,
+      config : config,
+      package : package,
+      logger : logger
+    })
+    logger.logMessage('Loaded plugin : ' + dir + '.js');
   })
 }

@@ -3,7 +3,9 @@ exports.process = function(info) {
     return;
 
   if (info.args[0] != 'r' && info.args[0] != 'p' && info.args[0] != 's') {
-    info.message.reply('that is not a valid option! Choose from `r`, `p` or `s`.');
+    info.message.reply('that is not a valid option! Choose from `r`, `p` or `s`.')
+      .then((msg) => msg.delete(info.config.deleteAfter))
+      .catch(info.logger.logError);
     return;
   }
 
@@ -40,15 +42,15 @@ exports.process = function(info) {
   }
 
   if (meV == playerV) {
-    info.message.channel.send(`You chose ${player}, and I also chose ${me}. It's a draw!`)
+    info.message.channel.send(`You chose ${player}, and I also chose ${me}. It's a draw!`);
   }
 
   if (meV == eClamp(playerV + 1, 0, 2)) {
-    info.message.channel.send(`You chose ${player}, and I chose ${me}. I win!`)
+    info.message.channel.send(`You chose ${player}, and I chose ${me}. I win!`);
   }
 
   if (meV == eClamp(playerV - 1, 0, 2)) {
-    info.message.channel.send(`You chose ${player}, and I chose ${me}. You win!`)
+    info.message.channel.send(`You chose ${player}, and I chose ${me}. You win!`);
   }
 }
 

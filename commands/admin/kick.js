@@ -1,12 +1,16 @@
 exports.process = function(info) {
   var target = info.message.mentions.members.first();
   if (!target) {
-    info.message.reply('the correct usage of this command is `' + info.config.prefix + 'kick <@user> [reason]`');
+    info.message.reply('the correct usage of this command is `' + info.config.prefix + 'kick <@user> [reason]`')
+      .then((msg) => msg.delete(info.config.deleteAfter))
+      .catch(info.logger.logError);
     return;
   }
 
 	if (!target.kickable) {
-    info.message.reply("I cannot kick this member");
+    info.message.reply("I cannot kick this member")
+      .then((msg) => msg.delete(info.config.deleteAfter))
+      .catch(info.logger.logError);
     return;
   }
 

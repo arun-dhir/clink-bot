@@ -2,5 +2,6 @@
   "prefix":"",
   "token":"",
   "deleteCommands":true,
+  "deleteAfter":5000,
   "welcomeMessage":""
 }

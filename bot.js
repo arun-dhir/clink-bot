@@ -80,13 +80,19 @@ function getCommands() {
 
 function loadPlugins() {
   fs.readdirSync('./plugins').forEach(dir => {
-    var plugin = require('./plugins/' + dir + '/' + dir + '.js');
-    plugin.init({
-      client : client,
-      config : config,
-      package : package,
-      logger : logger
-    })
-    logger.logMessage('Loaded plugin : ' + dir + '.js');
+    try {
+      var plugin = require('./plugins/' + dir + '/' + dir + '.js');
+      plugin.init({
+        client : client,
+        config : config,
+        package : package,
+        logger : logger
+      })
+      logger.logMessage('Loaded plugin : ' + dir + '.js');
+    }
+    catch(err) {
+      logger.logWarning('Failed to load plugin : ' + dir + '.js');
+      logger.logError(err);
+    }
   })
 }

@@ -1,3 +1,5 @@
+var lConfig = require('./welcome.json');
+
 var info;
 
 exports.init = function(i) {
@@ -6,8 +8,8 @@ exports.init = function(i) {
 }
 
 function welcome(member) {
-  if (!info.config.welcomeMessage || info.config.welcomeMessage == "")
+  if (!lConfig.message || lConfig.message == "")
     return;
 
-  member.send(info.config.welcomeMessage);
+  member.send(lConfig.message);
 }

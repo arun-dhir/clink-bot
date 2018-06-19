@@ -9,6 +9,8 @@ var client = new Discord.Client();
 var commands = [];
 var commandPaths = [];
 
+var customcmds;
+
 process.on('uncaughtException', function (err) {
   logger.logError(err);
   logger.logWarning('Application in unclean state. Stopping process.');
@@ -46,8 +48,11 @@ client.on('message', message => {
 client.login(config.token);
 
 function processMessage(message, command, args) {
+  var processed = false;
+
   for (var i = 0; i < commands.length; i++) {
     if (commands[i] == command) {
+      processed = true;
       var perm = permissions.isAllowed(command, message);
       if (perm.state == true) {
         logger.logMessage(`${message.author.tag} used command ${command}`);
@@ -65,6 +70,10 @@ function processMessage(message, command, args) {
         message.reply(perm.message);
       }
     }
+  }
+
+  if (!processed && customcmds) {
+    customcmds.onMessage(message);
   }
 }
 
@@ -89,6 +98,10 @@ function loadPlugins() {
         logger : logger
       })
       logger.logMessage('Loaded plugin : ' + dir + '.js');
+
+      if (dir == 'customcmds') {
+        customcmds = plugin;
+      }
     }
     catch(err) {
       logger.logWarning('Failed to load plugin : ' + dir + '.js');

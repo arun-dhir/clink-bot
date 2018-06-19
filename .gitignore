@@ -2,3 +2,4 @@
 config.json
 permissions.json
 plugins/welcome/welcome.json
+plugins/customcmds/customcmds.json

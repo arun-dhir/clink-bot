@@ -1,0 +1,3 @@
+[
+  {"command":"hello", "reply":true, "return":"hey there!"}
+]

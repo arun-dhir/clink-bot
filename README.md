@@ -10,7 +10,7 @@ You will need to have [node.js](https://nodejs.org/) on your computer to host it
 
 ---
 
-## Custom Commands
+### Custom Commands
 
 Don't feel like going through the trouble of adding a fully-integrated command? Custom commands are for you! Here's an example of a command:
 

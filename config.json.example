@@ -1,4 +1,5 @@
 {
+  "developerMode":false,
   "prefix":"",
   "token":"",
   "deleteCommands":true,

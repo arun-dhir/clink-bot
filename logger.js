@@ -1,3 +1,5 @@
+var config = require('./config.json');
+
 function logMessage(message) {
   log('[LOG] ' + message);
 }
@@ -7,6 +9,11 @@ function logWarning(message) {
 }
 
 function logError(error) {
+  if (config.developerMode) {
+    log(error);
+    return;
+  }
+
   var str = '[ERROR] ';
 
   var regex = /clink-bot\\(.*)\.js:[0-9]*:[0-9]*/;

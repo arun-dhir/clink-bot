@@ -10,6 +10,18 @@ You will need to have [node.js](https://nodejs.org/) on your computer to host it
 
 ---
 
+## Custom Commands
+
+Don't feel like going through the trouble of adding a fully-integrated command? Custom commands are for you! Here's an example of a command:
+
+```
+{"command":"hello", "reply":true, "return":"hey there!"}
+```
+
+There are three fields, `command` specifies what you need to say to active that command, for example, if `command` was `hello` and the prefix was `+`, you would need to type `+hello`. `reply` specifies if the bot should reply to the message or not. With reply on, the command above would be `@Clink, hello there!` and with it off it would be just `hello there!`. And finally `return` is what the bot should say.
+
+---
+
 ### Permissions
 
 Permissions is how you can dictate who can use a command, and in what channel. There are three 'fields' to do this. `channel-lock`, `roles` and `ids`. Each of these 'fields' takes an array of items. Here's an example
@@ -25,4 +37,4 @@ With this example, you will only be allowed to use the command in the channel wi
 
 ### Help
 
-I'll be more than happy to help you out on discord, @Clink#9168.
+I'll be more than happy to help you out on discord, find me @Clink#9168.

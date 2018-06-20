@@ -21,7 +21,7 @@ client.on('ready', () => {
   loadPlugins();
   getCommands();
 
-  client.user.setPresence({ game: { name : config.prefix + 'help', type : 0 } });
+  client.user.setPresence({ game: { name : config.prefix + 'help | v' + package.version, type : 0 } });
 
   logger.logMessage('Bot is ready');
 })

@@ -27,11 +27,12 @@ There are three fields, `command` specifies what you need to say to active that 
 Permissions is how you can dictate who can use a command, and in what channel. There are three 'fields' to do this. `channel-lock`, `roles` and `ids`. Each of these 'fields' takes an array of items. Here's an example
 
 ```
-"channel-lock" : [446345375909937152, 446345390141472768]
-"roles" : ["Mod", "Admin"]
+"channel-lock" : [446345375909937152, 446345390141472768],
+"roles" : ["Mod", "Admin"],
+"permissions" : ["MANAGE_MESSAGES"]
 ```
 
-With this example, you will only be allowed to use the command in the channel with an id of `446345375909937152`, and the channel with an id of `446345390141472768`, and you must also have a role of `Mod` or `Admin`. Leave the array blank (`[]`) or don't include the field to ignore that field.
+With this example, you will only be allowed to use the command in the channel with an id of `446345375909937152`, and the channel with an id of `446345390141472768`, and you must also have a role of `Mod` or `Admin`. Leave the array blank (`[]`) or don't include the field to ignore that field. We put `MANAGE_MESSAGES` into the permissions, meaning only someone with the permission to manage messages can use the command. See all permissions [here](https://discordapp.com/developers/docs/topics/permissions). 
 
 ---
 

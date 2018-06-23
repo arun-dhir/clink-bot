@@ -2,6 +2,7 @@
   "say":{
     "channel-lock":[],
     "roles":[],
-    "ids":[]
+    "ids":[],
+    "permissions":[]
   }
 }

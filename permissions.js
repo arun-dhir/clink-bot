@@ -36,5 +36,11 @@ exports.isAllowed = function(command, message) {
     }
   }
 
+  if (perms.permissions && perms.permissions.length != 0) {
+    if (!message.member.hasPermission(perms.permissions)) {
+      return {state:false, message:'you do not have the permissions to do this!'};
+    }
+  }
+
   return {state:true};
 }

@@ -32,7 +32,13 @@ Permissions is how you can dictate who can use a command, and in what channel. T
 "permissions" : ["MANAGE_MESSAGES"]
 ```
 
-With this example, you will only be allowed to use the command in the channel with an id of `446345375909937152`, and the channel with an id of `446345390141472768`, and you must also have a role of `Mod` or `Admin`. Leave the array blank (`[]`) or don't include the field to ignore that field. We put `MANAGE_MESSAGES` into the permissions, meaning only someone with the permission to manage messages can use the command. See all permissions [here](https://discordapp.com/developers/docs/topics/permissions). 
+With this example, you will only be allowed to use the command in the channel with an id of `446345375909937152`, and the channel with an id of `446345390141472768`, and you must also have a role of `Mod` or `Admin`. Leave the array blank (`[]`) or don't include the field to ignore that field. We put `MANAGE_MESSAGES` into the permissions, meaning only someone with the permission to manage messages can use the command. See all permissions [here](https://discordapp.com/developers/docs/topics/permissions).
+
+---
+
+### Message Filter
+
+With the message filter, you can specify which messages need to be deleted. There are two fields: `whitelist` and `blacklist`. The filter uses the pattern of a [regular expressions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions).
 
 ---
 

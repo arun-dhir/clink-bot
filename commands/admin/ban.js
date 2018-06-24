@@ -24,7 +24,7 @@ exports.process = function(info) {
       target.ban(info.args.slice(1).join(' '));
       info.message.channel.send(`**${target.user.tag}** has been banned from **${info.message.guild.name}** by **${info.message.author.tag}**` + reason);
     })
-    .catch(error => message.send(`I could not ban this member because of **${error}**`));
+    .catch(error => info.message.send(`I could not ban this member because of **${error}**`));
 }
 
 exports.usage = 'ban <@user> [reason] | ban a user';

@@ -24,7 +24,7 @@ exports.process = function(info) {
       target.kick(info.args.slice(1).join(' '));
       info.message.channel.send(`**${target.user.tag}** has been kicked from **${info.message.guild.name}** by **${info.message.author.tag}**` + reason);
     })
-    .catch(error => message.send(`I could not kick this member because of **${error}**`));
+    .catch(error => info.message.send(`I could not kick this member because of **${error}**`));
 }
 
 exports.usage = 'kick <@user> [reason] | kick a user';

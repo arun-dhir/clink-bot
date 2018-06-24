@@ -38,7 +38,9 @@ client.on('message', message => {
       .then(() => {
         processMessage(message, command, args);
       })
-      .catch(logger.logError)
+      .catch((err) => {
+        processMessage(message, command, args);
+      })
   }
   else {
     processMessage(message, command, args);

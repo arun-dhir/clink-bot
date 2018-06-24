@@ -18,7 +18,7 @@ exports.process = function(info) {
       msg.delete(info.config.deleteAfter)
         .then(() => {
           info.message.channel.bulkDelete(num, false)
-            .catch(info.logger.logError);
+            .catch((err) => info.logger.logError(err, info.message));
         });
     })
     .catch(info.logger.logError);

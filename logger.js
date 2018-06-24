@@ -8,7 +8,12 @@ function logWarning(message) {
   log('[WARN] ' + message)
 }
 
-function logError(error) {
+function logError(error, msg) {
+  if (error.code && error.code == 50013 && msg) {
+    msg.channel.send('I do not have the permissions needed to perform that command.');
+    return;
+  }
+
   if (config.developerMode) {
     log(error);
     return;

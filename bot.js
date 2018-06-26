@@ -27,7 +27,7 @@ client.on('ready', () => {
 })
 
 client.on('message', message => {
-  if (!message.content.startsWith(config.prefix) || message.channel.type == 'dm')
+  if (!message.content.startsWith(config.prefix) || message.channel.type == 'dm' || message.author.bot)
     return;
 
   var args = message.content.slice(config.prefix.length).trim().split(/ +/g);

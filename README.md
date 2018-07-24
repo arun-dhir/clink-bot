@@ -2,8 +2,6 @@
 
 A discord bot, built in discord.js. Find what's coming next on our [Trello](https://trello.com/b/6ZlRJQMH/clinkbot).
 
-https://clinkbot.glitch.me/
-
 ---
 
 ### Installation

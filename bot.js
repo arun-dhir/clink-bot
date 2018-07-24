@@ -2,6 +2,7 @@ var Discord = require('discord.js');
 var fs = require('fs');
 var config = require('./config.json');
 var package = require('./package.json');
+var disabled = require('./disabled.json');
 var permissions = require('./permissions.js');
 var logger = require('./logger.js');
 
@@ -81,33 +82,57 @@ function processMessage(message, command, args) {
 
 function getCommands() {
   fs.readdirSync('./commands').forEach(dir => {
-    fs.readdirSync('./commands/' + dir).forEach(file => {
-      commands.push(file.toLowerCase().substring(0, file.length - 3));
-      commandPaths.push('./commands/' + dir + '/' + file);
-      logger.logMessage('Loaded command : ' + file);
-    })
+    var valid = true;
+
+    if (disabled) {
+      for (var i = 0; i < disabled.commandTypes.length; i++) {
+        if (disabled.commandTypes[i] == dir) {
+          valid = false;
+        }
+      }
+    }
+
+    if (valid) {
+      fs.readdirSync('./commands/' + dir).forEach(file => {
+        commands.push(file.toLowerCase().substring(0, file.length - 3));
+        commandPaths.push('./commands/' + dir + '/' + file);
+        logger.logMessage('Loaded command : ' + file);
+      })
+    }
   })
 }
 
 function loadPlugins() {
   fs.readdirSync('./plugins').forEach(dir => {
-    try {
-      var plugin = require('./plugins/' + dir + '/' + dir + '.js');
-      plugin.init({
-        client : client,
-        config : config,
-        package : package,
-        logger : logger
-      })
-      logger.logMessage('Loaded plugin : ' + dir + '.js');
+    var valid = true;
 
-      if (dir == 'customcmds') {
-        customcmds = plugin;
+    if (disabled) {
+      for (var i = 0; i < disabled.plugins.length; i++) {
+        if (disabled.plugins[i] == dir) {
+          valid = false;
+        }
       }
     }
-    catch(err) {
-      logger.logWarning('Failed to load plugin : ' + dir + '.js');
-      logger.logError(err);
+
+    if (valid) {
+      try {
+        var plugin = require('./plugins/' + dir + '/' + dir + '.js');
+        plugin.init({
+          client : client,
+          config : config,
+          package : package,
+          logger : logger
+        })
+        logger.logMessage('Loaded plugin : ' + dir + '.js');
+  
+        if (dir == 'customcmds') {
+          customcmds = plugin;
+        }
+      }
+      catch(err) {
+        logger.logWarning('Failed to load plugin : ' + dir + '.js');
+        logger.logError(err);
+      }
     }
   })
 }

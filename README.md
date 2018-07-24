@@ -10,6 +10,12 @@ You will need to have [node.js](https://nodejs.org/) on your computer to host it
 
 ---
 
+### Disabling commands and plugins
+
+To disable commands and plugins, first rename `disabled.json.example` to `disabled.json`. In `plugins` you simply put the name of the plugin, in the proper case. For example: `customcmds`. For `commandTypes` you put the group of commands, for example `admin`.
+
+---
+
 ### Custom Commands
 
 Don't feel like going through the trouble of adding a fully-integrated command? Custom commands are for you! Here's an example of a command:

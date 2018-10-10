@@ -1,7 +1,10 @@
+# Configuration Files
+node_modules/*
 
 config.json
+disabled.json
 permissions.json
-plugins/welcome/welcome.json
+
 plugins/customcmds/customcmds.json
 plugins/msgfilter/msgfilter.json
-disabled.json
+plugins/welcome/welcome.json

@@ -1,8 +1,15 @@
 var Discord = require('discord.js');
 var fs = require('fs');
+
+if (!fs.existsSync('./config.json')) {
+    console.log('There are missing files for the bot to work properly. Please execute: "node initializer.js".');
+    process.exit(1);
+}
+
 var config = require('./config.json');
 var package = require('./package.json');
 var disabled = require('./disabled.json');
+
 var permissions = require('./permissions.js');
 var logger = require('./logger.js');
 
@@ -124,7 +131,7 @@ function loadPlugins() {
           logger : logger
         })
         logger.logMessage('Loaded plugin : ' + dir + '.js');
-  
+
         if (dir == 'customcmds') {
           customcmds = plugin;
         }

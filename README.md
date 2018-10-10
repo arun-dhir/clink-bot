@@ -6,13 +6,13 @@ A discord bot, built in discord.js. Find what's coming next on our [Trello](http
 
 ### Installation
 
-You will need to have [node.js](https://nodejs.org/) on your computer to host it yourself. Remove the `.example` on files ending with `.example`, for example `config.json.example` becomes just `config.json`. Go into `config.json` and fill in the token and your prefix. Use `cd` to go to the location of your bot then use `node bot.js` and enjoy!
+You will need to have [node.js](https://nodejs.org/) on your computer to host it yourself. Use `cd` to go to the location of your bot, then run the following line to generate configurable files: `node initializer.js`. First go into `config.json` and fill in the token and your prefix. Finally, use `node bot.js` to launch your bot!
 
 ---
 
 ### Disabling commands and plugins
 
-To disable commands and plugins, first rename `disabled.json.example` to `disabled.json`. In `plugins` you simply put the name of the plugin, in the proper case. For example: `customcmds`. For `commandTypes` you put the group of commands, for example `admin`.
+To disable commands and plugins, open `disabled.json`. In `plugins` you simply put the name of the plugin, in the proper case. For example: `customcmds`. For `commandTypes` you put the group of commands, for example `admin`.
 
 ---
 

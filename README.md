@@ -1,24 +1,24 @@
 # clink-bot
 
-A discord bot, built in discord.js. Find what's coming next on our [Trello](https://trello.com/b/6ZlRJQMH/clinkbot).
+A discord bot, built in discord.js.
 
 ---
 
 ### Installation
 
-You will need to have [node.js](https://nodejs.org/) on your computer to host it yourself. Use `cd` to go to the location of your bot, then run the following line to generate configurable files: `node initializer.js`. First go into `config.json` and fill in the token and your prefix. Finally, use `node bot.js` to launch your bot!
+You will need to have [node.js](https://nodejs.org/) on your computer to host the bot. To begin, use `cd` to go to the location of your bot, then run `node initializer.js` to create the configurable json files. Then, go into `config.json` and fill in the token and your prefix. Finally, use `node bot.js` to launch your bot!
 
 ---
 
 ### Disabling commands and plugins
 
-To disable commands and plugins, open `disabled.json`. In `plugins` you simply put the name of the plugin, in the proper case. For example: `customcmds`. For `commandTypes` you put the group of commands, for example `admin`.
+To disable certain commands and plugins, edit `disabled.json`. In `plugins` you simply put the name of the plugin you want to disable, in the correct case. For example: `customcmds`. For `commandTypes` you put the group of commands, for example `admin`.
 
 ---
 
 ### Custom Commands
 
-Don't feel like going through the trouble of adding a fully-integrated command? Custom commands are for you! Here's an example of a command:
+Don't feel like going through the trouble of adding a command through code? Custom commands are for you! Here's an example of a command:
 
 ```
 {"command":"hello", "reply":true, "return":"hey there!"}
